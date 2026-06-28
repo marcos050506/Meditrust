@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:6
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodbdata:/data/db
+    environment:
+      MONGO_INITDB_DATABASE: proyecto
+    restart: unless-stopped
+    networks:
+      - sistema-medico-network
+
+volumes:
+  mongodbdata:
+
+networks:
+  sistema-medico-network:
+    driver: bridge
