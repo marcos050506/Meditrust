@@ -1,0 +1,16 @@
+.git
+.gitignore
+__pycache__
+*.pyc
+.env
+.env.*
+backend/env/
+backend/venv/
+backend/__pycache__/
+backend/uploads/
+frontend/node_modules/
+frontend/.env
+frontend/.env.*
+SETUP_LOCAL.txt
+install-dependencies.ps1
+deploy.ps1

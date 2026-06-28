@@ -23,11 +23,19 @@ from services.email_service import send_reset_email
 
 import secrets
 import pandas as pd
+from pathlib import Path
 from dotenv import load_dotenv
 
 load_dotenv()
 
 app = FastAPI()
+
+# Serve frontend static files in production (only if build exists)
+frontend_build = Path(__file__).resolve().parent.parent / "frontend" / "build"
+if frontend_build.exists():
+    from fastapi.staticfiles import StaticFiles
+    app.mount("/", StaticFiles(directory=str(frontend_build), html=True), name="frontend")
+    logging.info("Frontend static files mounted from %s", frontend_build)
 
 security = HTTPBearer()
 
